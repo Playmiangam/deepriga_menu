@@ -3,91 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Копировать IP</title>
+    <title>Deep Sigma Menu</title>
     <style>
-        body {
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap');
+        
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #0a0a0a;
+            color: #e0e0e0;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            font-family: Arial, sans-serif;
+            padding: 20px;
+            line-height: 1.6;
         }
         
-        .container {
+        .menu-container {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header {
             text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
         }
         
-        .copy-btn {
-            background: linear-gradient(to right, #4A00E0, #8E2DE2);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 20px 50px;
-            font-size: 22px;
-            font-weight: bold;
-            cursor: pointer;
+        .restaurant-name {
+            font-size: 2.5em;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        
+        .menu-title {
+            font-size: 1.2em;
+            color: #888;
+            letter-spacing: 2px;
+        }
+        
+        .currency {
+            display: inline-block;
+            background: #333;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 0.9em;
+        }
+        
+        .category {
+            margin-bottom: 25px;
+        }
+        
+        .category-title {
+            text-align: center;
+            font-size: 1.1em;
+            margin: 20px 0;
+            color: #ccc;
+            letter-spacing: 1px;
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #333, transparent);
+            margin: 10px 0;
+        }
+        
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
         
-        .copy-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        .item:hover {
+            background: #252525;
+            padding: 8px 10px;
+            border-radius: 6px;
+            transform: translateX(5px);
         }
         
-        .copy-btn:active {
-            transform: translateY(1px);
+        .item-name {
+            flex-grow: 1;
+            color: #e0e0e0;
         }
         
-        .copy-btn.copied {
-            background: linear-gradient(to right, #00b09b, #96c93d);
+        .item-dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted #444;
+            margin: 0 10px;
+            height: 1px;
+        }
+        
+        .item-price {
+            color: #fff;
+            font-weight: 500;
+        }
+        
+        .multiline-item {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .multiline-item .item-name {
+            margin-bottom: 5px;
+        }
+        
+        .multiline-item .item-dots {
+            width: 100%;
+            margin: 5px 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <button class="copy-btn" id="copyBtn">Скопировать айпи</button>
-    </div>
+    <div class="menu-container">
+        <div class="header">
+            <div class="restaurant-name">𝔇𝔢𝔢𝔭 𝔖𝔦𝔤𝔞</div>
+            <div class="menu-title">𝔐𝔢𝔫𝔲</div>
+            <div class="currency">валюта ₹</div>
+        </div>
 
-    <script>
-        document.getElementById('copyBtn').addEventListener('click', function() {
-            const ip = 'lists-se.gl.joinmc.link';
-            const btn = this;
+        <div class="category">
+            <div class="divider"></div>
+            <div class="category-title">𝔰𝔲𝔭𝔶</div>
+            <div class="divider"></div>
             
-            // Копируем в буфер обмена
-            navigator.clipboard.writeText(ip).then(function() {
-                // Меняем текст и стиль кнопки
-                btn.textContent = 'Скопировано!';
-                btn.classList.add('copied');
-                
-                // Возвращаем исходный вид через 2 секунды
-                setTimeout(function() {
-                    btn.textContent = 'Скопировать айпи';
-                    btn.classList.remove('copied');
-                }, 2000);
-            }).catch(function(err) {
-                // Если API не поддерживается, используем старый метод
-                const textArea = document.createElement('textarea');
-                textArea.value = ip;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                
-                // Меняем текст и стиль кнопки
-                btn.textContent = 'Скопировано!';
-                btn.classList.add('copied');
-                
-                // Возвращаем исходный вид через 2 секунды
-                setTimeout(function() {
-                    btn.textContent = 'Скопировать айпи';
-                    btn.classList.remove('copied');
-                }, 2000);
-            });
-        });
-    </script>
+            <div class="item">
+                <span class="item-name">борщ</span>
+                <span class="item-dots"></span>
+                <span class="item-price">5₹</span>
+            </div>
+            <div class="item multiline-item">
+                <span class="item-name">грибной</span>
+                <span class="item-dots"></span>
+                <span class="item-price">8₹</span>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="divider"></div>
+            <div class="category-title">𝔫𝔞𝔭𝔦𝔱𝔨𝔦</div>
+            <div class="divider"></div>
+            
+            <div class="item">
+                <span class="item-name">пиво</span>
+                <span class="item-dots"></span>
+                <span class="item-price">3₹</span>
+            </div>
+            <div class="item">
+                <span class="item-name">коньяк</span>
+                <span class="item-dots"></span>
+                <span class="item-price">7₹</span>
+            </div>
+            <div class="item">
+                <span class="item-name">вино</span>
+                <span class="item-dots"></span>
+                <span class="item-price">5₹</span>
+            </div>
+            <div class="item">
+                <span class="item-name">redbool</span>
+                <span class="item-dots"></span>
+                <span class="item-price">4₹</span>
+            </div>
+            <div class="item">
+                <span class="item-name">водка</span>
+                <span class="item-dots"></span>
+                <span class="item-price">3₹</span>
+            </div>
+            <div class="item">
+                <span class="item-name">вода</span>
+                <span class="item-dots"></span>
+                <span class="item-price">1₹</span>
+            </div>
+            <div class="item">
+                <span class="item-name">кола</span>
+                <span class="item-dots"></span>
+                <span class="item-price">2₹</span>
+            </div>
+            <div class="item">
+                <span class="item-name">сок</span>
+                <span class="item-dots"></span>
+                <span class="item-price">2₹</span>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="divider"></div>
+            <div class="category-title">𝔷𝔞𝔨𝔲𝔰𝔨𝔦</div>
+            <div class="divider"></div>
+            
+            <div class="item">
+                <span class="item-name">морковь</span>
+                <span class="item-dots"></span>
+                <span class="item-price">2₹</span>
+            </div>
+            <div class="item">
+                <span class="item-name">рыба</span>
+                <span class="item-dots"></span>
+                <span class="item-price">6₹</span>
+            </div>
+            <div class="item">
+                <span class="item-name">мясо</span>
+                <span class="item-dots"></span>
+                <span class="item-price">7₹</span>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="divider"></div>
+            <div class="category-title">𝔡𝔢𝔰𝔰𝔢𝔯𝔱𝔶</div>
+            <div class="divider"></div>
+            
+            <div class="item">
+                <span class="item-name">пирог</span>
+                <span class="item-dots"></span>
+                <span class="item-price">4₹</span>
+            </div>
+            <div class="item">
+                <span class="item-name">торт</span>
+                <span class="item-dots"></span>
+                <span class="item-price">2₹</span>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="divider"></div>
+            <div class="category-title">𝔬𝔰𝔫𝔬𝔳𝔶</div>
+            <div class="divider"></div>
+            
+            <div class="item">
+                <span class="item-name">хлеб</span>
+                <span class="item-dots"></span>
+                <span class="item-price">1₹</span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
